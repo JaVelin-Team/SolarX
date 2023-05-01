@@ -14,7 +14,6 @@ def btnSendClick():
     yag = yagmail.SMTP(entEmail.get())
     yag.send(entRecipient.get(), entSubject.get(), entBody.get())
     
-
 root = Tk()
 root.title("SolarX")
 root.geometry("700x500")
@@ -30,13 +29,13 @@ btn = Button(text="Calculate", font=("Arial", 10, "bold"), command=btnClick)
 btn.place(x=200, y=45)
 
 lblMoney = Label(text="Press the button to find out how much money you could make!", font=("Arial", 10, "bold"))
-lblMoney.place(x=10,y=80)
+lblMoney.place(x=10, y=80)
 
 lblLDR = Label(text="LDR Value: ", font=("Arial", 10, "bold"))
 lblLDR.place(x=500, y=10)
 
 lstbx = Listbox(width=30, height=20)
-lstbx.place(x=500,y=30)
+lstbx.place(x=500, y=30)
 
 lblEmail = Label(text="Enter your email address: ", font=("Arial", 10, "bold"))
 lblEmail.place(x=10, y=120)
