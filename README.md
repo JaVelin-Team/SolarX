@@ -11,9 +11,7 @@
     pip install keyring <br />
     pip install keyrings.alt <br />
 
-3. Edit the python code with an IDE to enter the sender's gmail username (without "@gmail.com") and password, then enter the recipient's email address
-
-4. Run the python code
+3. Run the python code
 
 ## Equipment List
 [LDR - Light Dependent Resistor (5 Pack) | The Pi Hut](https://thepihut.com/products/ldr-light-dependent-resistor)
