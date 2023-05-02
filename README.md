@@ -7,10 +7,9 @@
 1. Setup the Pi as shown below: <br /><br />
 ![diagram](https://user-images.githubusercontent.com/108481836/235369532-3b75fdcf-b0c9-4a12-a9c5-0c8d11d248dd.png)
 
-2. Enter these commands in the Raspberry Pi terminal:
+2. Enter this command in the Raspberry Pi terminal:
 
-    pip install yagmail <br />
-    pip install flet <br />
+    pip install -r .\requirements.txt <br/>
 
 3. Run the python code
 
