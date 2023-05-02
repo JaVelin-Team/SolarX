@@ -9,7 +9,7 @@
 
 2. Enter this command in the Raspberry Pi terminal in the directory of the python file:
 
-    pip install -r ./requirements.txt <br/>
+    pip install -r ./requirements.txt <br />
 
 3. Run the python code
 
