@@ -9,10 +9,11 @@ def btnClick():
     finalValuekW = finalValue / 1000
     moneyGenerated = (finalValuekW * (10/(60*60))) * 16
     lblMoney.config(text=f"Money made in 10s: {str(moneyGenerated)} pence.")
+    return moneyGenerated
     
-def btnSendClick():
+def btnSendClick(moneyGenerated):
     yag = yagmail.SMTP(entEmail.get())
-    yag.send(entRecipient.get(), entSubject.get(), entBody.get())
+    yag.send(entRecipient.get(), "SolarX Results", f"You will make {str(moneyGenerated)} pence every 10 seconds!.")
     
 root = Tk()
 root.title("SolarX")
