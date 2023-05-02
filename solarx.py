@@ -67,7 +67,7 @@ def main(page: ft.Page):
     )
     
     tbArea = ft.TextField(
-        label="Area of solar panels (m^2): "
+        label="Area of solar panels (m²): "
     )
     
     btnArea = ft.ElevatedButton(
@@ -76,7 +76,7 @@ def main(page: ft.Page):
     )
     
     tbEmail = ft.TextField(
-        label="Enter your email username: "
+        label="Enter your gmail username: "
     )
     
     tbPassword = ft.TextField(
