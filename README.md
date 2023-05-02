@@ -13,6 +13,8 @@
     pip install keyring <br />
     pip install keyrings.alt <br />
     pip install flet <br />
+    sudo apt-get update
+    sudo apt-get install libgstreamer1.0-dev libgstreamer
 
 3. Run the python code
 
