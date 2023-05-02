@@ -46,21 +46,21 @@ async def main(page: ft.Page):
     )
     
     tbArea = ft.TextField(
-        label="Area of solar panels (m²): "
+        label="Area of solar panels (m²)"
     )
     
     tbEmail = ft.TextField(
-        label="Enter your gmail username: "
+        label="Enter your Gmail username"
     )
     
     tbPassword = ft.TextField(
-        label="Enter your password: ", 
+        label="Enter your password", 
         password=True, 
         can_reveal_password=True
     )
     
     tbRecipient = ft.TextField(
-        label="Enter the recipient's email address: ",
+        label="Enter the recipient's email address",
     )
     
     btn = ft.ElevatedButton(
