@@ -65,7 +65,8 @@ async def main(page: ft.Page):
     
     btn = ft.ElevatedButton(
         text="Calculate and Send Email", 
-        on_click=btnClick
+        on_click=btnClick,
+        icon="send"
     )
     
     lvLDR = ft.ListView( 
@@ -74,7 +75,7 @@ async def main(page: ft.Page):
         auto_scroll=True,
         height=200
     )
-    
+
     await page.add_async(
         ft.Row(controls=[
             ft.Column(controls=[
@@ -92,4 +93,8 @@ async def main(page: ft.Page):
     
     pass
 
-ft.app(target=main, view=ft.WEB_BROWSER, assets_dir="assets")
+ft.app(
+    target=main, 
+    view=ft.WEB_BROWSER, 
+    assets_dir="assets"
+)
