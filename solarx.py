@@ -1,70 +1,70 @@
 from gpiozero import LightSensor
 import time
+import flet as ft
 import yagmail
-from tkinter import *
 
-def btnClick():
-    area = int(ent.get())
-    finalValue = area * powerPerSqMetre
-    finalValuekW = finalValue / 1000
-    moneyGenerated = (finalValuekW * (10/(60*60))) * 16
-    lblMoney.config(text=f"Money made in 10s: {str(moneyGenerated)} pence.")
-    return moneyGenerated
+def main(page: ft.Page):
     
-def btnSendClick(moneyGenerated):
-    yag = yagmail.SMTP(entEmail.get())
-    yag.send(entRecipient.get(), "SolarX Results", f"You will make {str(moneyGenerated)} pence every 10 seconds!.")
+    def btnAreaClick(e):
+        ldr = LightSensor(27)
+
+        total = 0
+
+        for i in range(1,10):
+            total += (ldr.value * 1000000)
+            print(ldr.value)
+            time.sleep(1)
+            
+        current = 0.0000026455026
+        resistance = 1000000 - (total / 10)
+        power = current * current * resistance
+        powerPerSqMetre = power / 0.00000012
+        
+        area = tbArea.value
+        finalValue = int(area) * powerPerSqMetre
+        finalValuekW = finalValue / 1000
+        moneyGenerated = (finalValuekW * (10/(60*60))) * 16
+        page.add(ft.Text(f"Money made in 10s: {str(moneyGenerated)} pence."))
+        return moneyGenerated
     
-root = Tk()
-root.title("SolarX")
-root.geometry("700x500")
-root.iconbitmap("public\icon.ico")
+    def btnEmailClick(e, moneyGenerated):
+            yag = yagmail.SMTP(tbEmail.value, tbPassword.value)
+            yag.send(tbRecipient.value, "SolarX Results", f"You will make {str(moneyGenerated)} pence every 10 seconds!.")
+            page.add(ft.Text("Email sent!"))
 
-ent = Entry()
-ent.place(x=10, y=50)
-
-lbl = Label(text="Enter the area of solar panels you wish to install (m^2): ", font=("Arial", 10, "bold"))
-lbl.place(x=10, y=10)
-
-btn = Button(text="Calculate", font=("Arial", 10, "bold"), command=btnClick)
-btn.place(x=200, y=45)
-
-lblMoney = Label(text="Press the button to find out how much money you could make!", font=("Arial", 10, "bold"))
-lblMoney.place(x=10, y=80)
-
-lblLDR = Label(text="LDR Value: ", font=("Arial", 10, "bold"))
-lblLDR.place(x=500, y=10)
-
-lstbx = Listbox(width=30, height=20)
-lstbx.place(x=500, y=30)
-
-lblEmail = Label(text="Enter your email address: ", font=("Arial", 10, "bold"))
-lblEmail.place(x=10, y=120)
-
-entEmail = Entry()
-entEmail.place(x=10, y=150)
-
-lblRecipient = Label(text="Enter the recipient's email address: ", font=("Arial", 10, "bold"))
-lblRecipient.place(x=10, y=180)
-
-entRecipient = Entry()
-entRecipient.place(x=10, y=210)
-
-btnSend = Button(text="Send Email", font=("Arial", 10, "bold"), command=btnSendClick)
-btnSend.place(x=10, y=240)
-
-ldr = LightSensor(27)
-
-total = 0
-
-for i in range(1,10):
-    total += (ldr.value * 1000000)
-    lstbx.insert(ldr.value)
-    time.sleep(1)
+    page.title = "SolarX"
+    page.window_width = 700
+    page.window_height = 700
+    page.window_resizable = False
+    img = ft.Image(
+        src="public\cover.png",
+        width=700,
+        fit=ft.ImageFit.CONTAIN,
+    )
+    images = ft.Row(expand=1, wrap=False, scroll="always")
+    tbArea = ft.TextField(label="Area of solar panels (m^2): ")
+    btnArea = ft.ElevatedButton(text="Calculate", on_click=btnAreaClick)
+    tbEmail = ft.TextField(label="Enter your email address: ")
+    tbPassword = ft.TextField(label="Enter your password: ", password=True, can_reveal_password=True)
+    tbRecipient = ft.TextField(label="Enter the recipient's email address: ")
+    btnEmail = ft.ElevatedButton(text="Send Email", on_click=btnEmailClick)
+    page.add(
+        img, 
+        images,
+        ft.Row(controls=[
+            ft.Column(controls=[
+            tbArea, 
+            btnArea
+            ]),
+            ft.Column(controls=[
+                tbEmail,
+                tbPassword,
+                tbRecipient,
+                btnEmail
+            ])
+        ])
+    )
     
-current = 0.0000026455026
-resistance = 1000000 - (total / 10)
-power = current * current * resistance
-powerPerSqMetre = power / 0.00000012
+    pass
 
-root.mainloop()
+ft.app(target=main)
