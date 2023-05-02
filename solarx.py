@@ -1,13 +1,15 @@
 from gpiozero import LightSensor
-import time
 import flet as ft
 import yagmail
+import asyncio
+import logging
+logging.basicConfig(level=logging.DEBUG)
 
-def main(page: ft.Page):
+moneyGenerated = 0
+
+async def main(page: ft.Page):
     
-    moneyGenerated = 0
-    
-    def btnAreaClick(e):
+    async def btnAreaClick(e):
         ldr = LightSensor(27)
 
         total = 0
@@ -15,8 +17,8 @@ def main(page: ft.Page):
         for i in range(1,10):
             total += (ldr.value * 1000000)
             lvLDR.controls.append(ft.Text(str(ldr.value)))
-            time.sleep(1)
-            page.update()
+            asyncio.sleep(1)
+            page.update_async()
             
         current = 0.0000026455026
         resistance = 1000000 - (total / 10)
@@ -27,20 +29,12 @@ def main(page: ft.Page):
         finalValue = int(area) * powerPerSqMetre
         finalValuekW = finalValue / 1000
         moneyGenerated = (finalValuekW * (10/(60*60))) * 16
-        page.add(ft.Text(f"Money made in 10s: {str(moneyGenerated)} pence."))
+        await page.add_async(ft.Text(f"Money made in 10s: {str(moneyGenerated)} pence."))
     
-    def btnEmailClick(e):
+    async def btnEmailClick(e):
             yag = yagmail.SMTP(tbEmail.value, tbPassword.value)
             yag.send(tbRecipient.value, "SolarX Results", f"You will make {str(moneyGenerated)} pence every 10 seconds!.")
-            page.add(ft.Text("Email sent!"))
-            
-    def themeToggle(e):
-        page.theme_mode = (
-            ft.ThemeMode.DARK
-            if page.theme_mode == ft.ThemeMode.LIGHT
-            else ft.ThemeMode.LIGHT
-        )
-        page.update()
+            await page.add_async(ft.Text("Email sent!"))
         
     page.title = "SolarX"
     page.window_width = 700
@@ -51,10 +45,7 @@ def main(page: ft.Page):
     page.appbar = ft.AppBar(
         title=ft.Text("SolarX"),
         center_title=True,
-        bgcolor=ft.colors.SURFACE_VARIANT,
-        actions=[
-            ft.IconButton(ft.icons.WB_SUNNY_OUTLINED, on_click=themeToggle),
-        ],
+        bgcolor=ft.colors.SURFACE_VARIANT
     )
     
     tbArea = ft.TextField(
@@ -92,7 +83,7 @@ def main(page: ft.Page):
         height=100
     )
     
-    page.add(
+    await page.add_async(
         ft.Row(controls=[
             ft.Column(controls=[
                 tbArea, 
