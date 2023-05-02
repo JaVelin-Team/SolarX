@@ -31,11 +31,29 @@ def main(page: ft.Page):
             yag = yagmail.SMTP(tbEmail.value, tbPassword.value)
             yag.send(tbRecipient.value, "SolarX Results", f"You will make {str(moneyGenerated)} pence every 10 seconds!.")
             page.add(ft.Text("Email sent!"))
-
+            
+    def themeToggle(e):
+        page.theme_mode = (
+            ft.ThemeMode.DARK
+            if page.theme_mode == ft.ThemeMode.LIGHT
+            else ft.ThemeMode.LIGHT
+        )
+        page.update()
+        
     page.title = "SolarX"
     page.window_width = 900
     page.window_height = 700
     page.window_resizable = False
+    
+    page.appbar = ft.AppBar(
+        leading_width=40,
+        title=ft.Text("SolarX"),
+        center_title=False,
+        bgcolor=ft.colors.SURFACE_VARIANT,
+        actions=[
+            ft.IconButton(ft.icons.WB_SUNNY_OUTLINED, on_click=themeToggle),
+        ],
+    )
     
     img = ft.Image(
         src="public\cover.png",
