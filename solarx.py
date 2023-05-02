@@ -41,9 +41,10 @@ def main(page: ft.Page):
         page.update()
         
     page.title = "SolarX"
-    page.window_width = 900
-    page.window_height = 900
+    page.window_width = 700
+    page.window_height = 400
     page.window_resizable = False
+    page.scroll = ft.ScrollMode(value="auto")
     
     page.appbar = ft.AppBar(
         title=ft.Text("SolarX"),
@@ -52,18 +53,6 @@ def main(page: ft.Page):
         actions=[
             ft.IconButton(ft.icons.WB_SUNNY_OUTLINED, on_click=themeToggle),
         ],
-    )
-    
-    img = ft.Image(
-        src="assets\cover.png",
-        width=900,
-        fit=ft.ImageFit.CONTAIN,
-    )
-    
-    images = ft.Row(
-        expand=1, 
-        wrap=False, 
-        scroll="always"
     )
     
     tbArea = ft.TextField(
@@ -102,8 +91,6 @@ def main(page: ft.Page):
     )
     
     page.add(
-        img, 
-        images,
         ft.Row(controls=[
             ft.Column(controls=[
                 tbArea, 
