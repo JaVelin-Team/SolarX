@@ -2,3 +2,5 @@ flet>=0.3.2
 gpiozero>=1.6.2
 yagmail>=0.15.293
 asyncio>=3.4.3
+pyinstaller>=5.7.0
+pillow>=9.4.0
