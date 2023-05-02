@@ -46,9 +46,8 @@ def main(page: ft.Page):
     page.window_resizable = False
     
     page.appbar = ft.AppBar(
-        leading_width=40,
         title=ft.Text("SolarX"),
-        center_title=False,
+        center_title=True,
         bgcolor=ft.colors.SURFACE_VARIANT,
         actions=[
             ft.IconButton(ft.icons.WB_SUNNY_OUTLINED, on_click=themeToggle),
