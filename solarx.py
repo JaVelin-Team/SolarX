@@ -55,7 +55,7 @@ def main(page: ft.Page):
     )
     
     img = ft.Image(
-        src="public\cover.png",
+        src="assets\cover.png",
         width=900,
         fit=ft.ImageFit.CONTAIN,
     )
