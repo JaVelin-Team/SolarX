@@ -17,8 +17,8 @@ async def main(page: ft.Page):
         for i in range(1,10):
             total += (ldr.value * 1000000)
             lvLDR.controls.append(ft.Text(str(ldr.value)))
-            asyncio.sleep(1)
-            page.update_async()
+            await asyncio.sleep(1)
+            await page.update_async()
             
         current = 0.0000026455026
         resistance = 1000000 - (total / 10)
@@ -41,6 +41,7 @@ async def main(page: ft.Page):
     page.window_height = 400
     page.window_resizable = False
     page.scroll = ft.ScrollMode(value="auto")
+    page.theme_mode = "dark"
     
     page.appbar = ft.AppBar(
         title=ft.Text("SolarX"),
