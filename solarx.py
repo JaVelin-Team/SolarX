@@ -47,44 +47,44 @@ def main(page: ft.Page):
         expand=1, 
         wrap=False, 
         scroll="always"
-        )
+    )
     
     tbArea = ft.TextField(
         label="Area of solar panels (m^2): "
-        )
+    )
     
     btnArea = ft.ElevatedButton(
         text="Calculate", 
         on_click=btnAreaClick
-        )
+    )
     
     tbEmail = ft.TextField(
         label="Enter your email username: "
-        )
+    )
     
     tbPassword = ft.TextField(
         label="Enter your password: ", 
         password=True, 
         can_reveal_password=True
-        )
+    )
     
     tbRecipient = ft.TextField(
         label="Enter the recipient's email address: ",
         suffix_text="@gmail.com"
-        )
+    )
     
     btnEmail = ft.ElevatedButton(
         text="Send Email", 
         on_click=btnEmailClick
-        )
+    )
     
     page.add(
         img, 
         images,
         ft.Row(controls=[
             ft.Column(controls=[
-            tbArea, 
-            btnArea
+                tbArea, 
+                btnArea
             ]),
             ft.Column(controls=[
                 tbEmail,
