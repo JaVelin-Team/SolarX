@@ -36,18 +36,47 @@ def main(page: ft.Page):
     page.window_width = 700
     page.window_height = 700
     page.window_resizable = False
+    
     img = ft.Image(
         src="public\cover.png",
         width=700,
         fit=ft.ImageFit.CONTAIN,
     )
-    images = ft.Row(expand=1, wrap=False, scroll="always")
-    tbArea = ft.TextField(label="Area of solar panels (m^2): ")
-    btnArea = ft.ElevatedButton(text="Calculate", on_click=btnAreaClick)
-    tbEmail = ft.TextField(label="Enter your email address: ")
-    tbPassword = ft.TextField(label="Enter your password: ", password=True, can_reveal_password=True)
-    tbRecipient = ft.TextField(label="Enter the recipient's email address: ")
-    btnEmail = ft.ElevatedButton(text="Send Email", on_click=btnEmailClick)
+    
+    images = ft.Row(
+        expand=1, 
+        wrap=False, 
+        scroll="always"
+        )
+    
+    tbArea = ft.TextField(
+        label="Area of solar panels (m^2): "
+        )
+    
+    btnArea = ft.ElevatedButton(
+        text="Calculate", 
+        on_click=btnAreaClick
+        )
+    
+    tbEmail = ft.TextField(
+        label="Enter your email address: "
+        )
+    
+    tbPassword = ft.TextField(
+        label="Enter your password: ", 
+        password=True, 
+        can_reveal_password=True
+        )
+    
+    tbRecipient = ft.TextField(
+        label="Enter the recipient's email address: "
+        )
+    
+    btnEmail = ft.ElevatedButton(
+        text="Send Email", 
+        on_click=btnEmailClick
+        )
+    
     page.add(
         img, 
         images,
