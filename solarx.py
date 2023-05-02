@@ -59,7 +59,7 @@ def main(page: ft.Page):
         )
     
     tbEmail = ft.TextField(
-        label="Enter your email address: "
+        label="Enter your email username: "
         )
     
     tbPassword = ft.TextField(
@@ -69,7 +69,8 @@ def main(page: ft.Page):
         )
     
     tbRecipient = ft.TextField(
-        label="Enter the recipient's email address: "
+        label="Enter the recipient's email address: ",
+        suffix_text="@gmail.com"
         )
     
     btnEmail = ft.ElevatedButton(
