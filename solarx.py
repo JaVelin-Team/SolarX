@@ -5,8 +5,6 @@ import asyncio
 import logging
 logging.basicConfig(level=logging.DEBUG)
 
-moneyGenerated = 0
-
 async def main(page: ft.Page):
     
     async def btnClick(e):
