@@ -42,7 +42,7 @@ def main(page: ft.Page):
         
     page.title = "SolarX"
     page.window_width = 900
-    page.window_height = 700
+    page.window_height = 900
     page.window_resizable = False
     
     page.appbar = ft.AppBar(
