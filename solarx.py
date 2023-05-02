@@ -9,7 +9,7 @@ moneyGenerated = 0
 
 async def main(page: ft.Page):
     
-    async def btnAreaClick(e):
+    async def btnClick(e):
         ldr = LightSensor(27)
 
         total = 0
@@ -67,7 +67,7 @@ async def main(page: ft.Page):
     
     btn = ft.ElevatedButton(
         text="Calculate and Send Email", 
-        on_click=btnAreaClick
+        on_click=btnClick
     )
     
     lvLDR = ft.ListView( 
