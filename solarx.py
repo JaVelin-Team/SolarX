@@ -50,20 +50,8 @@ lblRecipient.place(x=10, y=180)
 entRecipient = Entry()
 entRecipient.place(x=10, y=210)
 
-lblSubject = Label(text="Enter the subject of the email: ", font=("Arial", 10, "bold"))
-lblSubject.place(x=10, y=240)
-
-entSubject = Entry()
-entSubject.place(x=10, y=270)
-
-lblBody = Label(text="Enter the body of the email: ", font=("Arial", 10, "bold"))
-lblBody.place(x=10, y=300)
-
-entBody = Text(width=50, height=5)
-entBody.place(x=10, y=330)
-
 btnSend = Button(text="Send Email", font=("Arial", 10, "bold"), command=btnSendClick)
-btnSend.place(x=10, y=450)
+btnSend.place(x=10, y=240)
 
 ldr = LightSensor(27)
 

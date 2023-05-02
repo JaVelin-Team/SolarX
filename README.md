@@ -12,6 +12,7 @@
     pip install yagmail <br />
     pip install keyring <br />
     pip install keyrings.alt <br />
+    pip install flet <br />
 
 3. Run the python code
 
