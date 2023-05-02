@@ -29,7 +29,7 @@ async def main(page: ft.Page):
         moneyGenerated = (finalValuekW * (10/(60*60))) * 16
         await page.add_async(ft.Text(f"Money made in 10s: {str(moneyGenerated)} pence."))
         yag = yagmail.SMTP(tbEmail.value, tbPassword.value)
-        yag.send(tbRecipient.value, "SolarX Results", f"You will make {str(moneyGenerated)} pence every 10 seconds!")
+        yag.send(tbRecipient.value, "SolarX Results", f"You will make {str(moneyGenerated)} pence in 10 seconds!")
         await page.add_async(ft.Text("Email sent!"))
 
     page.title = "SolarX"
