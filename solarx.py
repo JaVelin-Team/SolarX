@@ -12,7 +12,7 @@ def main(page: ft.Page):
 
         for i in range(1,10):
             total += (ldr.value * 1000000)
-            print(ldr.value)
+            lvLDR.controls.append(ft.Text(str(ldr.value)))
             time.sleep(1)
             
         current = 0.0000026455026
@@ -33,13 +33,13 @@ def main(page: ft.Page):
             page.add(ft.Text("Email sent!"))
 
     page.title = "SolarX"
-    page.window_width = 700
+    page.window_width = 900
     page.window_height = 700
     page.window_resizable = False
     
     img = ft.Image(
         src="public\cover.png",
-        width=700,
+        width=900,
         fit=ft.ImageFit.CONTAIN,
     )
     
@@ -78,6 +78,12 @@ def main(page: ft.Page):
         on_click=btnEmailClick
     )
     
+    lvLDR = ft.ListView( 
+        spacing=10, 
+        padding=20, 
+        auto_scroll=True
+    )
+    
     page.add(
         img, 
         images,
@@ -91,6 +97,9 @@ def main(page: ft.Page):
                 tbPassword,
                 tbRecipient,
                 btnEmail
+            ]),
+            ft.Column(controls=[
+                lvLDR
             ])
         ])
     )
