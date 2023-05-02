@@ -5,6 +5,8 @@ import yagmail
 
 def main(page: ft.Page):
     
+    moneyGenerated = 0
+    
     def btnAreaClick(e):
         ldr = LightSensor(27)
 
@@ -14,6 +16,7 @@ def main(page: ft.Page):
             total += (ldr.value * 1000000)
             lvLDR.controls.append(ft.Text(str(ldr.value)))
             time.sleep(1)
+            page.update()
             
         current = 0.0000026455026
         resistance = 1000000 - (total / 10)
@@ -25,9 +28,8 @@ def main(page: ft.Page):
         finalValuekW = finalValue / 1000
         moneyGenerated = (finalValuekW * (10/(60*60))) * 16
         page.add(ft.Text(f"Money made in 10s: {str(moneyGenerated)} pence."))
-        return moneyGenerated
     
-    def btnEmailClick(e, moneyGenerated):
+    def btnEmailClick(e):
             yag = yagmail.SMTP(tbEmail.value, tbPassword.value)
             yag.send(tbRecipient.value, "SolarX Results", f"You will make {str(moneyGenerated)} pence every 10 seconds!.")
             page.add(ft.Text("Email sent!"))
@@ -76,7 +78,6 @@ def main(page: ft.Page):
     
     tbRecipient = ft.TextField(
         label="Enter the recipient's email address: ",
-        suffix_text="@gmail.com"
     )
     
     btnEmail = ft.ElevatedButton(
@@ -87,7 +88,8 @@ def main(page: ft.Page):
     lvLDR = ft.ListView( 
         spacing=10, 
         padding=20, 
-        auto_scroll=True
+        auto_scroll=True,
+        height=100
     )
     
     page.add(
@@ -110,4 +112,4 @@ def main(page: ft.Page):
     
     pass
 
-ft.app(target=main)
+ft.app(target=main, view=ft.WEB_BROWSER, assets_dir="assets")
