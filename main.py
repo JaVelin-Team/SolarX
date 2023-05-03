@@ -2,8 +2,6 @@ from gpiozero import LightSensor
 import flet as ft
 import yagmail
 import asyncio
-import logging
-logging.basicConfig(level=logging.DEBUG)
 
 async def main(page: ft.Page):
     
