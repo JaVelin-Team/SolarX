@@ -24,7 +24,7 @@ async def main(page: ft.Page):
         area = tbArea.value
         finalValue = int(area) * powerPerSqMetre
         finalValuekW = finalValue / 1000
-        moneyGenerated = round((finalValuekW * (10/(60*60))) * 69120, 2)
+        moneyGenerated = round((finalValuekW * (10/(60**2))) * 69120, 2)
         await page.add_async(ft.Text(f"Money made in 12 hours of sunlight: {str(moneyGenerated)} pence."))
         mail = mt.Mail(
             sender=mt.Address(email=tbEmail.value, name="SolarX"),
