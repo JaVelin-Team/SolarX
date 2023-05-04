@@ -45,15 +45,6 @@ async def main(page: ft.Page):
     page.theme_mode = "dark"
     page.window_maximizable = False
     
-    page.appbar = ft.AppBar(
-        leading=ft.Image(
-            src="assets/icon.png",
-            fit=ft.ImageFit.CONTAIN
-        ),
-        title=ft.Text("SolarX"),
-        bgcolor=ft.colors.SURFACE_VARIANT
-    )
-    
     img = ft.Image(
         src="assets/cover.png",
         width=660,
