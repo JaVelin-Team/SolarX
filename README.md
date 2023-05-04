@@ -6,7 +6,7 @@
 
 1. To download the code, run:
 
-    'git clone https://github.com/JaVelin-Team/SolarX'
+    'git clone <https://github.com/JaVelin-Team/SolarX>'
 
 1. To download the requirements, run:
 
