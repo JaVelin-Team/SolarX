@@ -4,13 +4,17 @@
 
 ## Instructions
 
-1. Enter this command in the terminal in the directory of the python file:
+1. To download the code, run:
 
-    pip install -r ./requirements.txt
+    'git clone https://github.com/JaVelin-Team/SolarX'
+
+1. To download the requirements, run:
+
+    'pip install -r ./requirements.txt'
 
 2.1. Run the python code
 
-2.2. To pack the code into a windows executable, run: 
+2.2. To pack the code into a windows executable, run:
 
     'flet pack main.py --icon assets\icon.png --name SolarX --add-data "assets;assets"'
 
