@@ -4,14 +4,15 @@
 
 ## Instructions
 
-1. Setup the Pi as shown below: <br /><br />
-![diagram](https://user-images.githubusercontent.com/108481836/235369532-3b75fdcf-b0c9-4a12-a9c5-0c8d11d248dd.png)
-
-2. Enter this command in the Raspberry Pi terminal in the directory of the python file:
+1. Enter this command in the Raspberry Pi terminal in the directory of the python file:
 
     pip install -r ./requirements.txt <br />
 
-3. Run the python code
+2. Run the python code
+
+3. To pack the code into a windows executable: run 'flet pack main.py --icon assets\icon.png --name SolarX --add-data "assets;assets"'
+
+4. To pack the code into a mac or linux app: run 'flet pack main.py --icon assets/icon.png --name SolarX --add-data "assets:assets"'
 
 ## Equipment List
 
