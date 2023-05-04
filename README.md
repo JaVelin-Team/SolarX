@@ -8,16 +8,16 @@
 
     'git clone <https://github.com/JaVelin-Team/SolarX>'
 
-1. To download the requirements, run:
+2. To download the requirements, run:
 
     'pip install -r ./requirements.txt'
 
-2.1. Run the python code
+3. Run the python code
 
-2.2. To pack the code into a windows executable, run:
+3.1. To pack the code into a windows executable, run:
 
     'flet pack main.py --icon assets\icon.png --name SolarX --add-data "assets;assets"'
 
-2.3. To pack the code into a mac or linux app, run:
+3.2. To pack the code into a mac or linux app, run:
 
     'flet pack main.py --icon assets/icon.png --name SolarX --add-data "assets:assets"'
