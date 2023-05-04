@@ -1,6 +1,6 @@
 from gpiozero import LightSensor
 import flet as ft
-import yagmail
+import mailtrap as mt
 import asyncio
 
 async def main(page: ft.Page):
@@ -24,41 +24,50 @@ async def main(page: ft.Page):
         area = tbArea.value
         finalValue = int(area) * powerPerSqMetre
         finalValuekW = finalValue / 1000
-        moneyGenerated = (finalValuekW * (10/(60*60))) * 16
-        await page.add_async(ft.Text(f"Money made in 10s: {str(moneyGenerated)} pence."))
-        yag = yagmail.SMTP(tbEmail.value, tbPassword.value)
-        yag.send(tbRecipient.value, "SolarX Results", f"You will make {str(moneyGenerated)} pence in 10 seconds!")
+        moneyGenerated = round((finalValuekW * (10/(60*60))) * 69120, 2)
+        await page.add_async(ft.Text(f"Money made in 12 hours of sunlight: {str(moneyGenerated)} pence."))
+        mail = mt.Mail(
+            sender=mt.Address(email=tbEmail.value, name="SolarX"),
+            to=[mt.Address(email=tbEmail.value)],
+            subject="SolarX Results",
+            text=f"You will make {str(moneyGenerated)} pence in 12 hours of sunlight seconds!"
+        )
+        client=mt.MailtrapClient(token="73ba915fdc93e0461c35fd508e6b281e")
+        client.send(mail)
         await page.add_async(ft.Text("Email sent!"))
 
     page.title = "SolarX"
     page.window_width = 700
-    page.window_height = 400
+    page.window_height = 700
     page.window_resizable = False
+    page.window_full_screen = False
     page.scroll = ft.ScrollMode(value="auto")
     page.theme_mode = "dark"
+    page.window_maximizable = False
     
     page.appbar = ft.AppBar(
+        leading=ft.Image(
+            src="assets/icon.png",
+            fit=ft.ImageFit.CONTAIN
+        ),
         title=ft.Text("SolarX"),
-        center_title=True,
         bgcolor=ft.colors.SURFACE_VARIANT
     )
     
+    img = ft.Image(
+        src="assets/cover.png",
+        width=660,
+        fit=ft.ImageFit.CONTAIN,
+        border_radius=10
+    )
+    images = ft.Row(expand=1, wrap=False, scroll="always")
+    
     tbArea = ft.TextField(
-        label="Area of solar panels (m²)"
+        label="Enter the area of solar panels (m²)"
     )
     
     tbEmail = ft.TextField(
-        label="Enter your Gmail username"
-    )
-    
-    tbPassword = ft.TextField(
-        label="Enter your password", 
-        password=True, 
-        can_reveal_password=True
-    )
-    
-    tbRecipient = ft.TextField(
-        label="Enter the recipient's email address",
+        label="Enter your email address",
     )
     
     btn = ft.ElevatedButton(
@@ -71,16 +80,18 @@ async def main(page: ft.Page):
         spacing=10, 
         padding=20, 
         auto_scroll=True,
-        height=200
+        height=100
     )
 
     await page.add_async(
         ft.Row(controls=[
+            img,
+            images
+        ]),
+        ft.Row(controls=[
             ft.Column(controls=[
                 tbArea, 
                 tbEmail,
-                tbPassword,
-                tbRecipient,
                 btn
             ]),
             ft.Column(controls=[
@@ -91,8 +102,4 @@ async def main(page: ft.Page):
     
     pass
 
-ft.app(
-    target=main, 
-    view=ft.WEB_BROWSER, 
-    assets_dir="assets"
-)
+ft.app(target=main)

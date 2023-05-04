@@ -1,4 +1,4 @@
 flet>=0.3.2
 gpiozero>=1.6.2
-yagmail>=0.15.293
+mailtrap>=0.1.0
 asyncio>=3.4.3
