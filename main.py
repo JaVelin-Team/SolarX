@@ -29,17 +29,16 @@ async def main(page: ft.Page):
         t.value = f"Money made in 12 hours of sunlight: {str(moneyGenerated)}p."
         await t.update_async()
 
-        if c.value:
-            mail = mt.Mail(
-                sender=mt.Address(email="mailtrap@kalebhirshfield.pro", name="SolarX"),
-                to=[mt.Address(email=tbEmail.value)],
-                subject="SolarX Results",
-                text=f"You will make {str(moneyGenerated)}p in 12 hours of sunlight seconds!",
-            )
-            client = mt.MailtrapClient(token="8038606809dda08b11c7ea6b116ac11b")
-            client.send(mail)
+        mail = mt.Mail(
+            sender=mt.Address(email="mailtrap@kalebhirshfield.pro", name="SolarX"),
+            to=[mt.Address(email=tbEmail.value)],
+            subject="SolarX Results",
+            text=f"You will make {str(moneyGenerated)}p in 12 hours of sunlight seconds!",
+        )
+        client = mt.MailtrapClient(token="8038606809dda08b11c7ea6b116ac11b")
+        client.send(mail)
 
-            await page.add_async(ft.Text("Email sent!"))
+        await page.add_async(ft.Text("Email sent!"))
 
     page.title = "SolarX"
     page.window_width = 700
@@ -65,8 +64,6 @@ async def main(page: ft.Page):
         label="Enter your email address", keyboard_type="email", on_submit=btnClick
     )
 
-    c = ft.Checkbox(label="Send Email", value=False)
-
     btn = ft.ElevatedButton(text="Calculate", on_click=btnClick, icon="send")
 
     t = ft.Text("")
@@ -77,7 +74,7 @@ async def main(page: ft.Page):
         ft.Row(controls=[img, images]),
         ft.Row(
             controls=[
-                ft.Column(controls=[tbArea, tbEmail, ft.Row(controls=[c, btn]), t]),
+                ft.Column(controls=[tbArea, tbEmail, btn, t]),
                 ft.Column(controls=[lvLDR]),
             ]
         ),
