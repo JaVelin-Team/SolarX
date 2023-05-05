@@ -64,7 +64,9 @@ async def main(page: ft.Page):
         label="Enter your email address", keyboard_type="email", on_submit=btnClick
     )
 
-    btn = ft.ElevatedButton(text="Calculate", on_click=btnClick, icon="send")
+    btn = ft.ElevatedButton(
+        text="Calculate and Send Email", on_click=btnClick, icon="send"
+    )
 
     t = ft.Text("")
 
