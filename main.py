@@ -55,14 +55,10 @@ async def main(page: ft.Page):
     images = ft.Row(expand=1, wrap=False, scroll="always")
 
     tbArea = ft.TextField(
-        label="Enter the area of solar panels (m²)",
-        keyboard_type="number",
-        on_submit=btnClick,
+        label="Enter the area of solar panels (m²)", keyboard_type="number"
     )
 
-    tbEmail = ft.TextField(
-        label="Enter your email address", keyboard_type="email", on_submit=btnClick
-    )
+    tbEmail = ft.TextField(label="Enter your email address", keyboard_type="email")
 
     btn = ft.ElevatedButton(
         text="Calculate and Send Email", on_click=btnClick, icon="send"
