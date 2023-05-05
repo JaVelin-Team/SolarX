@@ -26,20 +26,20 @@ async def main(page: ft.Page):
         finalValuekW = finalValue / 1000
         moneyGenerated = round((finalValuekW * (10 / (60**2))) * 69120, 2)
 
-        await page.add_async(
-            ft.Text(f"Money made in 12 hours of sunlight: {str(moneyGenerated)} pence.")
-        )
+        t.value = f"Money made in 12 hours of sunlight: {str(moneyGenerated)}p."
+        await t.update_async()
 
-        mail = mt.Mail(
-            sender=mt.Address(email="mailtrap@kalebhirshfield.pro", name="SolarX"),
-            to=[mt.Address(email=tbEmail.value)],
-            subject="SolarX Results",
-            text=f"You will make {str(moneyGenerated)} pence in 12 hours of sunlight seconds!",
-        )
-        client = mt.MailtrapClient(token="8038606809dda08b11c7ea6b116ac11b")
-        client.send(mail)
+        if c.value:
+            mail = mt.Mail(
+                sender=mt.Address(email="mailtrap@kalebhirshfield.pro", name="SolarX"),
+                to=[mt.Address(email=tbEmail.value)],
+                subject="SolarX Results",
+                text=f"You will make {str(moneyGenerated)}p in 12 hours of sunlight seconds!",
+            )
+            client = mt.MailtrapClient(token="8038606809dda08b11c7ea6b116ac11b")
+            client.send(mail)
 
-        await page.add_async(ft.Text("Email sent!"))
+            await page.add_async(ft.Text("Email sent!"))
 
     page.title = "SolarX"
     page.window_width = 700
@@ -55,15 +55,21 @@ async def main(page: ft.Page):
     )
     images = ft.Row(expand=1, wrap=False, scroll="always")
 
-    tbArea = ft.TextField(label="Enter the area of solar panels (m²)")
+    tbArea = ft.TextField(
+        label="Enter the area of solar panels (m²)",
+        keyboard_type="number",
+        on_submit=btnClick,
+    )
 
     tbEmail = ft.TextField(
-        label="Enter your email address",
+        label="Enter your email address", keyboard_type="email", on_submit=btnClick
     )
 
-    btn = ft.ElevatedButton(
-        text="Calculate and Send Email", on_click=btnClick, icon="send"
-    )
+    c = ft.Checkbox(label="Send Email", value=False)
+
+    btn = ft.ElevatedButton(text="Calculate", on_click=btnClick, icon="send")
+
+    t = ft.Text("")
 
     lvLDR = ft.ListView(spacing=10, padding=20, auto_scroll=True, height=100)
 
@@ -71,7 +77,7 @@ async def main(page: ft.Page):
         ft.Row(controls=[img, images]),
         ft.Row(
             controls=[
-                ft.Column(controls=[tbArea, tbEmail, btn]),
+                ft.Column(controls=[tbArea, tbEmail, ft.Row(controls=[c, btn]), t]),
                 ft.Column(controls=[lvLDR]),
             ]
         ),
