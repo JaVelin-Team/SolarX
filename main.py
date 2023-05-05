@@ -25,9 +25,11 @@ async def main(page: ft.Page):
         finalValue = int(area) * powerPerSqMetre
         finalValuekW = finalValue / 1000
         moneyGenerated = round((finalValuekW * (10 / (60**2))) * 69120, 2)
+
         await page.add_async(
             ft.Text(f"Money made in 12 hours of sunlight: {str(moneyGenerated)} pence.")
         )
+
         mail = mt.Mail(
             sender=mt.Address(email="mailtrap@kalebhirshfield.pro", name="SolarX"),
             to=[mt.Address(email=tbEmail.value)],
@@ -36,6 +38,7 @@ async def main(page: ft.Page):
         )
         client = mt.MailtrapClient(token="8038606809dda08b11c7ea6b116ac11b")
         client.send(mail)
+
         await page.add_async(ft.Text("Email sent!"))
 
     page.title = "SolarX"
