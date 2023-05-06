@@ -1,20 +1,19 @@
 from gpiozero import LightSensor
 import flet as ft
+from flet import RoundedRectangleBorder
+import time
 import mailtrap as mt
-import asyncio
 
 
-async def main(page: ft.Page):
-    async def btnClick(e):
+def main(page: ft.Page):
+    def btnClick(e):
         ldr = LightSensor(27)
 
         total = 0
 
         for i in range(1, 10):
             total += ldr.value * 999000
-            lvLDR.controls.append(ft.Text(str(ldr.value)))
-            await asyncio.sleep(1)
-            await page.update_async()
+            time.sleep(1)
 
         current = 0.0000026455026
         resistance = 1000 + (total / 10)
@@ -26,9 +25,6 @@ async def main(page: ft.Page):
         finalValuekW = finalValue / 1000
         moneyGenerated = round((finalValuekW * (10 / (60**2))) * 69120, 2)
 
-        t.value = f"Money made in 12 hours of sunlight: {str(moneyGenerated)}p."
-        await t.update_async()
-
         mail = mt.Mail(
             sender=mt.Address(email="mailtrap@kalebhirshfield.pro", name="SolarX"),
             to=[mt.Address(email=tbEmail.value)],
@@ -38,45 +34,76 @@ async def main(page: ft.Page):
         client = mt.MailtrapClient(token="8038606809dda08b11c7ea6b116ac11b")
         client.send(mail)
 
-        await page.add_async(ft.Text("Email sent!"))
+        btn.update(
+            ft.Text(
+                f"Money made in 12 hours of sunlight: {str(moneyGenerated)}p, email sent!"
+            )
+        )
 
     page.title = "SolarX"
-    page.window_width = 700
-    page.window_height = 700
+    page.window_width = 645
+    page.window_height = 455
     page.window_resizable = False
     page.window_full_screen = False
     page.scroll = ft.ScrollMode(value="auto")
     page.theme_mode = "dark"
     page.window_maximizable = False
+    page.window_title_bar_hidden = True
+    page.window_title_bar_buttons_hidden = True
+
+    windowDragArea = ft.WindowDragArea(
+        ft.Container(ft.Text("SolarX"), bgcolor=ft.colors.BACKGROUND, padding=10),
+        expand=True,
+        maximizable=False,
+    )
+
+    btnClose = ft.IconButton(ft.icons.CLOSE, on_click=lambda e: page.window_close())
 
     img = ft.Image(
-        src="assets/cover.png", width=660, fit=ft.ImageFit.CONTAIN, border_radius=10
+        src="assets/cover.png", width=610, fit=ft.ImageFit.CONTAIN, border_radius=10
     )
     images = ft.Row(expand=1, wrap=False, scroll="always")
 
     tbArea = ft.TextField(
-        label="Enter the area of solar panels (m²)", keyboard_type="number"
+        label="Enter the area of solar panels (m²)",
+        keyboard_type="number",
+        border_radius=10,
+        border_color=ft.colors.WHITE60,
+        text_style=ft.TextStyle(color=ft.colors.WHITE60),
+        cursor_color=ft.colors.WHITE60,
     )
 
-    tbEmail = ft.TextField(label="Enter your email address", keyboard_type="email")
-
-    btn = ft.ElevatedButton(
-        text="Calculate and Send Email", on_click=btnClick, icon="send"
+    tbEmail = ft.TextField(
+        label="Enter your email address",
+        keyboard_type="email",
+        border_radius=10,
+        border_color=ft.colors.WHITE60,
+        text_style=ft.TextStyle(color=ft.colors.WHITE60),
+        cursor_color=ft.colors.WHITE60,
     )
 
-    t = ft.Text("")
+    style = ft.ButtonStyle(
+        color={
+            ft.MaterialState.DEFAULT: ft.colors.WHITE60,
+        },
+        shape={ft.MaterialState.DEFAULT: RoundedRectangleBorder(radius=10)},
+    )
 
-    lvLDR = ft.ListView(spacing=10, padding=20, auto_scroll=True, height=100)
+    btn = ft.OutlinedButton(
+        text="Calculate and Send Email",
+        on_click=btnClick,
+        icon="send",
+        icon_color=ft.colors.WHITE60,
+        style=style,
+        expand=True,
+    )
 
-    await page.add_async(
+    page.add(
+        ft.Row(controls=[windowDragArea, btnClose]),
         ft.Row(controls=[img, images]),
-        ft.Row(
-            controls=[
-                ft.Column(controls=[tbArea, tbEmail, btn, t]),
-                ft.Column(controls=[lvLDR]),
-            ]
-        ),
-    )
+        ft.Row(controls=[tbArea, tbEmail]),
+        ft.Row(controls=[btn]),
+    ),
 
     pass
 
