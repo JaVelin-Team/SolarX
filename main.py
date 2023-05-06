@@ -6,33 +6,41 @@ import mailtrap as mt
 
 
 def main(page: ft.Page):
+    def closeBanner(e):
+        page.banner.open = False
+        page.update()
+
     def btnClick(e):
-        ldr = LightSensor(27)
+        try:
+            ldr = LightSensor(27)
 
-        total = 0
+            total = 0
 
-        for i in range(1, 10):
-            total += ldr.value * 999000
-            time.sleep(1)
+            for i in range(1, 10):
+                total += ldr.value * 999000
+                time.sleep(1)
 
-        current = 0.0000026455026
-        resistance = 1000 + (total / 10)
-        power = current * current * resistance
-        powerPerSqMetre = power / 0.00000012
+            current = 0.0000026455026
+            resistance = 1000 + (total / 10)
+            power = current * current * resistance
+            powerPerSqMetre = power / 0.00000012
 
-        area = tbArea.value
-        finalValue = int(area) * powerPerSqMetre
-        finalValuekW = finalValue / 1000
-        moneyGenerated = round((finalValuekW * (10 / (60**2))) * 69120, 2)
+            area = tbArea.value
+            finalValue = int(area) * powerPerSqMetre
+            finalValuekW = finalValue / 1000
+            moneyGenerated = round((finalValuekW * (691200 / (60**2))), 2)
 
-        mail = mt.Mail(
-            sender=mt.Address(email="mailtrap@kalebhirshfield.pro", name="SolarX"),
-            to=[mt.Address(email=tbEmail.value)],
-            subject="SolarX Results",
-            text=f"You will make {str(moneyGenerated)}p in 12 hours of sunlight seconds!",
-        )
-        client = mt.MailtrapClient(token="8038606809dda08b11c7ea6b116ac11b")
-        client.send(mail)
+            mail = mt.Mail(
+                sender=mt.Address(email="mailtrap@kalebhirshfield.pro", name="SolarX"),
+                to=[mt.Address(email=tbEmail.value)],
+                subject="SolarX Results",
+                text=f"You will make {str(moneyGenerated)}p in 12 hours of sunlight seconds!",
+            )
+            client = mt.MailtrapClient(token="8038606809dda08b11c7ea6b116ac11b")
+            client.send(mail)
+        except:
+            page.banner.open = True
+            page.update()
 
         btn.update(
             ft.Text(
@@ -63,6 +71,35 @@ def main(page: ft.Page):
         src="assets/cover.png", width=610, fit=ft.ImageFit.CONTAIN, border_radius=10
     )
     images = ft.Row(expand=1, wrap=False, scroll="always")
+
+    page.banner = ft.Banner(
+        bgcolor=ft.colors.AMBER_ACCENT_700,
+        leading=ft.Icon(ft.icons.WARNING_AMBER_ROUNDED, color=ft.colors.BLACK, size=40),
+        content=ft.Text(
+            color=ft.colors.BLACK,
+            value="Oops, we were unable to find LDR values or send an email. Please try again.",
+        ),
+        actions=[
+            ft.TextButton(
+                "Retry",
+                on_click=btnClick,
+                style=ft.ButtonStyle(
+                    color={
+                        ft.MaterialState.DEFAULT: ft.colors.BLACK,
+                    }
+                ),
+            ),
+            ft.TextButton(
+                "Cancel",
+                on_click=closeBanner,
+                style=ft.ButtonStyle(
+                    color={
+                        ft.MaterialState.DEFAULT: ft.colors.BLACK,
+                    }
+                ),
+            ),
+        ],
+    )
 
     tbArea = ft.TextField(
         label="Enter the area of solar panels (m²)",
