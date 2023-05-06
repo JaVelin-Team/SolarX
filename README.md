@@ -10,7 +10,7 @@
 
 2. To download the requirements, run:
 
-    'pip install -r .\requirements.txt'
+    pip install -r .\requirements.txt
 
 3. Run the python code
 
