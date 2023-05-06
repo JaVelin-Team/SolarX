@@ -38,15 +38,15 @@ def main(page: ft.Page):
             )
             client = mt.MailtrapClient(token="8038606809dda08b11c7ea6b116ac11b")
             client.send(mail)
+
+            btn.update(
+                ft.Text(
+                    f"Money made in 12 hours of sunlight: {str(moneyGenerated)}p, email sent!"
+                )
+            )
         except:
             page.banner.open = True
             page.update()
-
-        btn.update(
-            ft.Text(
-                f"Money made in 12 hours of sunlight: {str(moneyGenerated)}p, email sent!"
-            )
-        )
 
     page.title = "SolarX"
     page.window_width = 645
@@ -86,7 +86,11 @@ def main(page: ft.Page):
                 style=ft.ButtonStyle(
                     color={
                         ft.MaterialState.DEFAULT: ft.colors.BLACK,
-                    }
+                    },
+                    bgcolor={
+                        ft.MaterialState.HOVERED: ft.colors.AMBER_ACCENT_400,
+                    },
+                    shape={ft.MaterialState.DEFAULT: RoundedRectangleBorder(radius=10)},
                 ),
             ),
             ft.TextButton(
@@ -95,7 +99,11 @@ def main(page: ft.Page):
                 style=ft.ButtonStyle(
                     color={
                         ft.MaterialState.DEFAULT: ft.colors.BLACK,
-                    }
+                    },
+                    bgcolor={
+                        ft.MaterialState.HOVERED: ft.colors.AMBER_ACCENT_400,
+                    },
+                    shape={ft.MaterialState.DEFAULT: RoundedRectangleBorder(radius=10)},
                 ),
             ),
         ],
