@@ -39,11 +39,30 @@ def main(page: ft.Page):
             client = mt.MailtrapClient(token="8038606809dda08b11c7ea6b116ac11b")
             client.send(mail)
 
-            btn.update(
-                ft.Text(
-                    f"Money made in 12 hours of sunlight: {str(moneyGenerated)}p, email sent!"
-                )
+            def closeBs(e):
+                bs.open = False
+                bs.update()
+
+            bs = ft.BottomSheet(
+                ft.Container(
+                    ft.Column(
+                        [
+                            ft.Text(
+                                f"You will make {str(moneyGenerated)}p in 12 hours of sunlight seconds!",
+                                size=20,
+                            ),
+                            ft.OutlinedButton(
+                                "Close bottom sheet", on_click=closeBs, style=style
+                            ),
+                        ],
+                        tight=True,
+                    ),
+                    padding=10,
+                ),
+                open=True,
             )
+            page.add(bs)
+
         except:
             page.banner.open = True
             page.update()
