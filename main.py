@@ -84,7 +84,24 @@ def main(page: ft.Page):
         maximizable=False,
     )
 
-    btnClose = ft.IconButton(ft.icons.CLOSE, on_click=lambda e: page.window_close())
+    style = ft.ButtonStyle(
+        color={
+            ft.MaterialState.DEFAULT: ft.colors.WHITE60,
+        },
+        shape={ft.MaterialState.DEFAULT: RoundedRectangleBorder(radius=10)},
+    )
+
+    btnClose = ft.IconButton(
+        ft.icons.CLOSE,
+        style=ft.ButtonStyle(
+            color={
+                ft.MaterialState.DEFAULT: ft.colors.WHITE60,
+                ft.MaterialState.HOVERED: ft.colors.RED_ACCENT_200,
+            },
+            shape={ft.MaterialState.DEFAULT: RoundedRectangleBorder(radius=10)},
+        ),
+        on_click=lambda e: page.window_close(),
+    )
 
     img = ft.Image(
         src="assets/cover.png", width=610, fit=ft.ImageFit.CONTAIN, border_radius=10
@@ -144,13 +161,6 @@ def main(page: ft.Page):
         border_color=ft.colors.WHITE60,
         text_style=ft.TextStyle(color=ft.colors.WHITE60),
         cursor_color=ft.colors.WHITE60,
-    )
-
-    style = ft.ButtonStyle(
-        color={
-            ft.MaterialState.DEFAULT: ft.colors.WHITE60,
-        },
-        shape={ft.MaterialState.DEFAULT: RoundedRectangleBorder(radius=10)},
     )
 
     btn = ft.OutlinedButton(
