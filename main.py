@@ -72,8 +72,8 @@ def main(page: ft.Page):
             page.update()
 
     page.title = "SolarX"
-    page.window_width = 645
-    page.window_height = 455
+    page.window_width = 700
+    page.window_height = 430
     page.window_resizable = False
     page.window_full_screen = False
     page.scroll = ft.ScrollMode(value="auto")
@@ -108,7 +108,7 @@ def main(page: ft.Page):
     )
 
     img = ft.Image(
-        src="assets/cover.png", width=610, fit=ft.ImageFit.CONTAIN, border_radius=10
+        src="assets/cover.png", width=665, fit=ft.ImageFit.CONTAIN, border_radius=10
     )
     images = ft.Row(expand=1, wrap=False, scroll="always")
 
@@ -167,20 +167,17 @@ def main(page: ft.Page):
         cursor_color=ft.colors.WHITE60,
     )
 
-    btn = ft.OutlinedButton(
-        text="Calculate and Send Email",
+    btn = ft.IconButton(
         on_click=btnClick,
         icon="send",
         icon_color=ft.colors.WHITE60,
         style=style,
-        expand=True,
     )
 
     page.add(
         ft.Row(controls=[windowDragArea, btnClose]),
         ft.Row(controls=[img, images]),
-        ft.Row(controls=[tbArea, tbEmail]),
-        ft.Row(controls=[btn]),
+        ft.Row(controls=[tbArea, tbEmail, btn]),
     ),
 
     pass
