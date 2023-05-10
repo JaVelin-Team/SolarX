@@ -153,18 +153,27 @@ def main(page: ft.Page):
         label="Enter the area of solar panels (m²)",
         keyboard_type="number",
         border_radius=10,
-        border_color=ft.colors.WHITE60,
-        text_style=ft.TextStyle(color=ft.colors.WHITE60),
-        cursor_color=ft.colors.WHITE60,
+        border_color=ft.colors.WHITE70,
+        text_style=ft.TextStyle(color=ft.colors.WHITE70),
+        label_style=ft.TextStyle(color=ft.colors.WHITE70),
+        border_width=2,
+        focused_border_width=4,
+        on_submit=btnClick,
+        autofocus=True,
+        focused_border_color=ft.colors.PINK_ACCENT_400,
     )
 
     tbEmail = ft.TextField(
         label="Enter your email address",
         keyboard_type="email",
         border_radius=10,
-        border_color=ft.colors.WHITE60,
-        text_style=ft.TextStyle(color=ft.colors.WHITE60),
-        cursor_color=ft.colors.WHITE60,
+        border_color=ft.colors.WHITE70,
+        text_style=ft.TextStyle(color=ft.colors.WHITE70),
+        label_style=ft.TextStyle(color=ft.colors.WHITE70),
+        border_width=2,
+        focused_border_width=4,
+        on_submit=btnClick,
+        focused_border_color=ft.colors.ORANGE_ACCENT_400,
     )
 
     btn = ft.IconButton(
