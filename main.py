@@ -3,14 +3,18 @@ import flet as ft
 from flet import RoundedRectangleBorder
 import time
 import mailtrap as mt
+from os import getenv
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 def main(page: ft.Page):
-    def closeBanner(e):
+    def closeBanner(_):
         page.banner.open = False
         page.update()
 
-    def btnClick(e):
+    def btnClick(_):
         try:
             ldr = LightSensor(27)
 
@@ -36,10 +40,10 @@ def main(page: ft.Page):
                 subject="SolarX Results",
                 text=f"You will make {str(moneyGenerated)}p in 12 hours of sunlight seconds!",
             )
-            client = mt.MailtrapClient(token="8038606809dda08b11c7ea6b116ac11b")
+            client = mt.MailtrapClient(token=getenv("MAILTRAP_TOKEN"))
             client.send(mail)
 
-            def closeBs(e):
+            def closeBs(_):
                 bs.open = False
                 bs.update()
 
@@ -182,4 +186,5 @@ def main(page: ft.Page):
     pass
 
 
-ft.app(target=main)
+if __name__ == "__main__":
+    ft.app(target=main)
