@@ -73,7 +73,7 @@ def main(page: ft.Page):
 
     page.title = "SolarX"
     page.window_width = 336
-    page.window_height = 201
+    page.window_height = 218
     page.window_resizable = False
     page.window_full_screen = False
     page.scroll = ft.ScrollMode(value="auto")
