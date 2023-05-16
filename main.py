@@ -72,8 +72,8 @@ def main(page: ft.Page):
             page.update()
 
     page.title = "SolarX"
-    page.window_width = 700
-    page.window_height = 430
+    page.window_width = 336
+    page.window_height = 201
     page.window_resizable = False
     page.window_full_screen = False
     page.scroll = ft.ScrollMode(value="auto")
@@ -106,11 +106,6 @@ def main(page: ft.Page):
         ),
         on_click=lambda _: page.window_close(),
     )
-
-    img = ft.Image(
-        src="assets/cover.png", width=665, fit=ft.ImageFit.CONTAIN, border_radius=10
-    )
-    images = ft.Row(expand=1, wrap=False, scroll="always")
 
     page.banner = ft.Banner(
         bgcolor=ft.colors.AMBER_ACCENT_700,
@@ -153,7 +148,7 @@ def main(page: ft.Page):
         label="Enter the area of solar panels (m²)",
         keyboard_type="number",
         border_radius=10,
-        border_color=ft.colors.WHITE70,
+        border_color=ft.colors.BACKGROUND,
         text_style=ft.TextStyle(color=ft.colors.WHITE70),
         label_style=ft.TextStyle(color=ft.colors.WHITE70),
         border_width=2,
@@ -161,32 +156,30 @@ def main(page: ft.Page):
         on_submit=btnClick,
         autofocus=True,
         focused_border_color=ft.colors.PINK_ACCENT_400,
+        bgcolor=ft.colors.BLACK54,
+        focused_bgcolor=ft.colors.BLACK12,
     )
 
     tbEmail = ft.TextField(
         label="Enter your email address",
         keyboard_type="email",
         border_radius=10,
-        border_color=ft.colors.WHITE70,
+        border_color=ft.colors.BACKGROUND,
         text_style=ft.TextStyle(color=ft.colors.WHITE70),
         label_style=ft.TextStyle(color=ft.colors.WHITE70),
         border_width=2,
         focused_border_width=4,
         on_submit=btnClick,
         focused_border_color=ft.colors.ORANGE_ACCENT_400,
-    )
-
-    btn = ft.IconButton(
-        on_click=btnClick,
-        icon="send",
-        icon_color=ft.colors.WHITE60,
-        style=style,
+        bgcolor=ft.colors.BLACK54,
+        focused_bgcolor=ft.colors.BLACK12,
+        suffix_icon=ft.icons.SEND_SHARP,
     )
 
     page.add(
         ft.Row(controls=[windowDragArea, btnClose]),
-        ft.Row(controls=[img, images]),
-        ft.Row(controls=[tbArea, tbEmail, btn]),
+        ft.Row(controls=[tbArea]),
+        ft.Row(controls=[tbEmail]),
     ),
 
     pass
