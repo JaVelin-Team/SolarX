@@ -180,7 +180,7 @@ def main(page: ft.Page):
         ft.Row(controls=[windowDragArea, btnClose]),
         ft.Row(controls=[tbArea]),
         ft.Row(controls=[tbEmail]),
-    ),
+    )
 
     pass
 
