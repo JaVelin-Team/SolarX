@@ -145,7 +145,7 @@ def main(page: ft.Page):
     )
 
     tbArea = ft.TextField(
-        label="Enter the area of solar panels (m²)",
+        label="Solar panel area (m²)",
         keyboard_type="number",
         border_radius=10,
         border_color=ft.colors.BACKGROUND,
@@ -161,7 +161,7 @@ def main(page: ft.Page):
     )
 
     tbEmail = ft.TextField(
-        label="Enter your email address",
+        label="Email address",
         keyboard_type="email",
         border_radius=10,
         border_color=ft.colors.BACKGROUND,
