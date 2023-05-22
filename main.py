@@ -158,6 +158,8 @@ def main(page: ft.Page):
         focused_border_color=ft.colors.PINK_ACCENT_400,
         bgcolor=ft.colors.BLACK54,
         focused_bgcolor=ft.colors.BLACK12,
+        cursor_color=ft.colors.PINK_ACCENT_400,
+        cursor_width=3,
     )
 
     tbEmail = ft.TextField(
@@ -174,6 +176,8 @@ def main(page: ft.Page):
         bgcolor=ft.colors.BLACK54,
         focused_bgcolor=ft.colors.BLACK12,
         suffix_icon=ft.icons.SEND_SHARP,
+        cursor_color=ft.colors.ORANGE_ACCENT_400,
+        cursor_width=3,
     )
 
     page.add(
