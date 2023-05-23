@@ -38,7 +38,7 @@ def main(page: ft.Page):
                 sender=mt.Address(email="mailtrap@kalebhirshfield.pro", name="SolarX"),
                 to=[mt.Address(email=tbEmail.value)],
                 subject="SolarX Results",
-                text=f"You will make {str(moneyGenerated)}p in 12 hours of sunlight seconds!",
+                text=f"You will make {str(moneyGenerated)}p in 12 hours of sunlight!",
             )
             client = mt.MailtrapClient(token=getenv("MAILTRAP_TOKEN"))
             client.send(mail)
@@ -52,7 +52,7 @@ def main(page: ft.Page):
                     ft.Column(
                         [
                             ft.Text(
-                                f"You will make {str(moneyGenerated)}p in 12 hours of sunlight seconds!",
+                                f"You will make {str(moneyGenerated)}p in 12 hours of sunlight!",
                                 size=20,
                             ),
                             ft.OutlinedButton(
