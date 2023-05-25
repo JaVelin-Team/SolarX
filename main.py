@@ -55,7 +55,7 @@ def main(page: ft.Page):
                                 f"You will make {str(moneyGenerated)}p in 12 hours of sunlight!",
                                 size=20,
                             ),
-                            ft.OutlinedButton(
+                            ft.TextButton(
                                 "Close bottom sheet", on_click=closeBs, style=style
                             ),
                         ],
@@ -90,16 +90,17 @@ def main(page: ft.Page):
 
     style = ft.ButtonStyle(
         color={
-            ft.MaterialState.DEFAULT: ft.colors.WHITE60,
+            ft.MaterialState.DEFAULT: ft.colors.WHITE70,
         },
         shape={ft.MaterialState.DEFAULT: RoundedRectangleBorder(radius=10)},
+        bgcolor={ft.MaterialState.DEFAULT: ft.colors.BLACK54},
     )
 
     btnClose = ft.IconButton(
         ft.icons.CLOSE,
         style=ft.ButtonStyle(
             color={
-                ft.MaterialState.DEFAULT: ft.colors.WHITE60,
+                ft.MaterialState.DEFAULT: ft.colors.WHITE70,
                 ft.MaterialState.HOVERED: ft.colors.RED_ACCENT_200,
             },
             shape={ft.MaterialState.DEFAULT: RoundedRectangleBorder(radius=10)},
