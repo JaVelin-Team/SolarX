@@ -84,7 +84,7 @@ def main(page: ft.Page):
 
     windowDragArea = ft.WindowDragArea(
         ft.Container(
-            ft.Text("SolarX"),
+            ft.Text("SolarX", text_align="center", color=ft.colors.WHITE70),
             bgcolor=ft.colors.BLACK54,
             padding=10,
             border_radius=10,
