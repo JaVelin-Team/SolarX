@@ -83,7 +83,7 @@ def main(page: ft.Page):
     page.window_title_bar_buttons_hidden = True
 
     windowDragArea = ft.WindowDragArea(
-        ft.Container(ft.Text("SolarX"), bgcolor=ft.colors.BACKGROUND, padding=10),
+        ft.Container(ft.Text("SolarX"), bgcolor=ft.colors.BLACK54, padding=10),
         expand=True,
         maximizable=False,
     )
@@ -103,6 +103,7 @@ def main(page: ft.Page):
                 ft.MaterialState.DEFAULT: ft.colors.WHITE70,
                 ft.MaterialState.HOVERED: ft.colors.RED_ACCENT_200,
             },
+            bgcolor={ft.MaterialState.DEFAULT: ft.colors.BLACK54},
             shape={ft.MaterialState.DEFAULT: RoundedRectangleBorder(radius=10)},
         ),
         on_click=lambda _: page.window_close(),
