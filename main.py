@@ -83,7 +83,12 @@ def main(page: ft.Page):
     page.window_title_bar_buttons_hidden = True
 
     windowDragArea = ft.WindowDragArea(
-        ft.Container(ft.Text("SolarX"), bgcolor=ft.colors.BLACK54, padding=10),
+        ft.Container(
+            ft.Text("SolarX"),
+            bgcolor=ft.colors.BLACK54,
+            padding=10,
+            border_radius=10,
+        ),
         expand=True,
         maximizable=False,
     )
